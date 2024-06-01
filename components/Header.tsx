@@ -1,3 +1,4 @@
+import { ThemeToggler } from "@/components/ThemeToggler";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -10,7 +11,7 @@ const Header = () => {
           alt="Disney Logo"
           width={120}
           height={100}
-          className="cursor-pointe invert"
+          className="cursor-pointe invert-0 dark:invert"
         />
       </Link>
 
@@ -18,6 +19,7 @@ const Header = () => {
         {/*GenreDropdown*/}
         {/*SearchInput*/}
         {/*ThemeToggler*/}
+        <ThemeToggler/>
       </div>
     </header>
   );
