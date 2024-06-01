@@ -1,4 +1,5 @@
 import { ThemeToggler } from "@/components/ThemeToggler";
+import SearchInput from "@/components/SearchInput";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -17,8 +18,7 @@ const Header = () => {
 
       <div className="flex space-x-2">
         {/*GenreDropdown*/}
-        {/*SearchInput*/}
-        {/*ThemeToggler*/}
+        <SearchInput/>
         <ThemeToggler/>
       </div>
     </header>
