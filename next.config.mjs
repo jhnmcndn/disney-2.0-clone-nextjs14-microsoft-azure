@@ -9,6 +9,10 @@ const nextConfig = {
       {
         protocol: "http",
         hostname: "image.tmdb.org",
+      },
+      {
+        protocol: "http",
+        hostname: "links.papareact.com"
       }
     ]
   }
