@@ -1,6 +1,6 @@
-import { SearchResults } from "@/typings";
+import {SearchResults} from "@/typings";
 
-async function fetchFromTMDB( url: URL, cacheTime?: number) {
+async function fetchFromTMDB(url: URL, cacheTime?: number) {
   url.searchParams.set("include_adult", "false");
   url.searchParams.set("include_video", "false");
   url.searchParams.set("sort_by", "popularity.desc");
@@ -11,15 +11,15 @@ async function fetchFromTMDB( url: URL, cacheTime?: number) {
     method: "GET",
     headers: {
       accept: "application/json",
-      authorization: `Bearer ${process.env.TMBD_API_KEY}`
+      Authorization: `Bearer ${process.env.TMDB_API_KEY}`,
     },
     next: {
-      revalidate: cacheTime || 60 * 60 * 24, //24 hours default
+      revalidate: cacheTime || 60 * 60 * 24,
     },
   };
 
   const response = await fetch(url.toString(), options);
-  return (await response.json() as SearchResults);
+  return (await response.json()) as SearchResults;
 }
 
 export async function getUpcomingMovies() {
