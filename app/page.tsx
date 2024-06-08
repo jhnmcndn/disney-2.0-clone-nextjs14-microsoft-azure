@@ -1,10 +1,19 @@
-import { Button } from '@/components/ui/button';
+import MovieCarousel from "@/components/MovieCarousel";
 
-const Home = () => {
+const Home = async () => {
+  const upcomingMovies = await getUpcomingMovies();
+  const topRatedMovies = await gettopRatedMovies();
+  const popularMovies = await getpopularMovies();
+
   return (
     <main className="">
-      <h1 className="text-red-500">Disney+!!!</h1>
-      <Button>Click Me</Button>
+      {/*<CarouselBannerWrapper/>*/}
+
+      <div className="flex flex-col space-y-2 xl:-mt-48">
+        <MovieCarousel movies={[]} title="Upcoming" />
+        {/*<MovieCarousel movies={} title={} />*/}
+        {/*<MovieCarousel movies={} title={} />*/}
+      </div>
     </main>
   );
 }
