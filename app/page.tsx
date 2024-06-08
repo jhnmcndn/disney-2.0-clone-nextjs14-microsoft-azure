@@ -1,5 +1,6 @@
 import MovieCarousel from "@/components/MovieCarousel";
 import { getPopularMovies, getTopRatedMovies, getUpcomingMovies } from "@/lib/getMovies";
+import CarouselBannerWrapper from "@/components/CarouselBannerWrapper";
 
 const Home = async () => {
   const upcomingMovies = await getUpcomingMovies();
@@ -8,7 +9,7 @@ const Home = async () => {
 
   return (
     <main className="">
-      {/*<CarouselBannerWrapper/>*/}
+      <CarouselBannerWrapper />
 
       <div className="flex flex-col space-y-2 xl:-mt-48">
         <MovieCarousel movies={upcomingMovies} title="Upcoming" />
