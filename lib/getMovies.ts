@@ -13,7 +13,7 @@ async function fetchFromTMDB(url: URL, cacheTime?: number) {
       accept: "application/json",
       Authorization: `Bearer ${process.env.TMDB_API_KEY}`,
     },
-    next: {
+     : {
       revalidate: cacheTime || 60 * 60 * 24,
     },
   };
@@ -57,3 +57,89 @@ export async function getSearchMovies(term: string)  {
   const data = await fetchFromTMDB(url);
   return data.results;
 }
+
+
+// export const api = async (param: string, params2: string, method: string, data?: any): Promise<any> => {
+//   const url = Domain + param + params2;
+//   let content = '';
+//   let json = true;
+//   let addtlHeaders = {};
+//   if (data instanceof FormData) {
+//     content = 'multipart/form-data';
+//     json = false;
+//   } else {
+//     content = 'application/json;charset=UTF-8';
+//     json = true;
+//   }
+
+//   if (params2.includes('inviterGame/rewardLogs')) {
+//     const rewardLogsType = params2.split('?')[1].substring(5);
+//     addtlHeaders = { type: rewardLogsType };
+//     params2 = 'inviterGame/rewardLogs';
+//   }
+//   try {
+//     const globalHeaders = {
+//       'front-host': url,
+//       dev: dev_version,
+//       version: process.env.APP_VERSION,
+//       'Content-Type': content,
+//     };
+//     const axiosConfig: AxiosRequestConfig = {
+//       method: method,
+//       url: url,
+//       headers: {
+//         'front-host': globalHeaders['front-host'],
+//         dev: globalHeaders.dev.toString(),
+//         version: globalHeaders.version?.toString() ?? 2,
+//         'Content-Type': globalHeaders['Content-Type'],
+//         token: userToken || localStorage.getItem('token'),
+//         otp: userOtp || localStorage.getItem('otp'),
+//         agent: Agent,
+//         'Accept-Language': !!acceptLang?.length ? acceptLang : localStorage.getItem('lang'),
+//         ...addtlHeaders,
+//       },
+//       data: json === true ? JSON.stringify(data) : data,
+//       // withCredentials: true,
+//     };
+
+//     const response: AxiosResponse = await axiosInstance(axiosConfig);
+//     if (response.status !== 200) {
+//       throw new Error('Request failed');
+//     }
+//     const loginMethods = ['login', 'loginEmail', 'email/register', 'mobile/login', 'loginDevice', 'continueWithOtp'];
+//     if (loginMethods.includes(params2)) {
+//       if (response.data.code === 200) {
+//         var resToken = response.data.data.token;
+//         var resUserId = response.data.data.id;
+//         storeToken(resToken);
+//         setCookie(resUserId, resToken, 30);
+//         localStorage.setItem('token', resToken);
+//         sessionStorage.removeItem('Modal');
+//         storeToken(response.data.data.token);
+//       } else {
+//         return response;
+//       }
+//       return response;
+//     } else if (response.data.code === 401) {
+//       if (
+//         !(
+//           window.location.pathname.includes('pinduoduo') ||
+//           window.location.pathname.includes('recharge-bonus') ||
+//           window.location.pathname.includes('roulette')
+//         )
+//       ) {
+//         localStorage.removeItem('token');
+//         userToken = '';
+//         window.location.href = '/?code=401';
+//       }
+//       return response;
+//     } else {
+//       return response;
+//     }
+//   } catch (error) {
+//     return null;
+//   }
+// };
+
+
+// export const continueWithOtp = (data: TContinueWithOtp) => api(platform, 'continueWithOtp', REQUEST_METHOD.POST, data);
